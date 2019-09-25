@@ -2,18 +2,18 @@ require 'colorize'
 
 class Tile
     
-    attr_accessor :value
+    attr_accessor :value, :given
 
     def initialize(value, given=false)
         @value = value
         @given = given
     end
 
-    def self.to_s
-        if self.given == true
-            return self.value.to_s
+    def to_s
+        if @given == true
+            return value.to_s
         else
-            return self.value.to_s.red
+            return value.to_s.red
         end
     end
 
