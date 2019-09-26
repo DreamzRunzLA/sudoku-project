@@ -7,7 +7,7 @@ class Board
         @grid = grid
     end
 
-    def from_file
+    def self.from_file
         arr = File.readlines('puzzles/sudoku1.txt').map do |line|
             line.split.map do |ele|
                 ele.to_s
@@ -31,7 +31,7 @@ class Board
             ans << sub
         end
 
-        return ans
+        return self.new(ans)
 
     end
 
