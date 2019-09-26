@@ -10,7 +10,7 @@ class Board
     end
 
     def self.from_file
-        arr = File.readlines('puzzles/sudoku1_solved.txt').map do |line|
+        arr = File.readlines('puzzles/sudoku1.txt').map do |line|
             line.split.map do |ele|
                 ele.to_s
                 ele.split('')
@@ -107,7 +107,18 @@ class Board
     end
 
     def col_solved?
-        
+        @grid.each_index do |index|
+            col = []
+            @grid.each do |row|
+                col << row[index].value
+            end
+            if col.sort != [1,2,3,4,5,6,7,8,9]
+                return false
+            else
+                next
+            end
+        end
+        return true
     end
 
     def grid_solved?
