@@ -1,4 +1,5 @@
 require_relative 'tile'
+require 'byebug'
 
 class Board
 
@@ -13,7 +14,25 @@ class Board
                 ele.split('')
             end
         end
-        return arr.map { |ele| ele.flatten}
+        half_arr = arr.map { |ele| ele.flatten}
+        # return half_arr
+
+        ans = []
+        #Now convert everything to a Tile
+        half_arr.each do |sub_array|
+            sub = []
+            sub_array.each do |ele|
+                if ele.to_i == 0
+                    sub << Tile.new(ele.to_i, true)
+                else
+                    sub << Tile.new(ele.to_i)
+                end
+            end
+            ans << sub
+        end
+
+        return ans
+
     end
 
     def render
