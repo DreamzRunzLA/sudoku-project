@@ -122,7 +122,33 @@ class Board
     end
 
     def grid_solved?
+        third1 = [0,1,2]
+        third2 = [3,4,5]
+        third3 = [6,7,8]
 
+        grid1 = [third1, third1]
+        grid2 = [third1, third2]
+        grid3 = [third1, third3]
+        grid4 = [third2, third1]
+        grid5 = [third2, third2]
+        grid6 = [third2, third3]
+        grid7 = [third3, third1]
+        grid8 = [third3, third2]
+        grid9 = [third3, third3]
+
+        grids = [grid1, grid2, grid3, grid4, grid5, grid6, grid7, grid8, grid9]
+
+        myCheck = []
+        grids.each do |grid|
+            digits = []
+            grid[0].each do |i|
+                grid[1].each do |j|
+                    digits << @grid[i][j].value
+                end
+            end
+            myCheck <<  digits
+        end
+        return myCheck
     end
 
 
