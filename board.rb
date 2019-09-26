@@ -80,7 +80,11 @@ class Board
     end
 
     def render
-
+        system("clear")
+        puts "  #{(0...@grid.length).to_a.join(' ')}"
+        @grid.each_with_index do |row, i|
+            puts "#{i} #{row.join(' ')}"
+        end
     end
 
     def solved?
