@@ -55,7 +55,7 @@ class Board
         if valid_pos?(pos)
             row, col = pos
             if @grid[row][col].given == true
-                @grid[row][col] = value
+                @grid[row][col].value = value
             else
                 "Cannot change"
             end
@@ -71,8 +71,12 @@ class Board
         pos.count == 2
     end
 
-    def update_tile(pos)
-
+    def update_tile(pos, value)
+        if self.[](pos).given == false
+            puts "This tile is not available to change"
+        else
+            self.[]=(pos, value)
+        end
     end
 
     def render
