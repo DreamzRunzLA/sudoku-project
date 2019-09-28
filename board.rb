@@ -57,7 +57,7 @@ class Board
             if @grid[row][col].given == true
                 @grid[row][col].value = value
             else
-                "Cannot change"
+                "Cannot change tiles that have already been set by the puzzle"
             end
         else
             puts "Invalid position"
