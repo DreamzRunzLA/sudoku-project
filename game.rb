@@ -19,20 +19,13 @@ class Game
             #Constantly render the board
             @board.render
             #Constantly obtain the position for the player
-            pos = get_player_input
+            pos = get_player_input[0]
+            val = get_player_input[1]
             #Constantly have the player make a guess
-            make_guess(pos)
+            @board.update_tile(pos, val)
         end
 
         puts "Congratualtions! You won."
-    end
-
-    def get_player_input
-
-    end
-
-    def make_guess
-    
     end
 
     def valid_pos?(pos)
@@ -49,6 +42,38 @@ class Game
         value.is_a?(Integer) &&
         #Check that the numbers given fall within the boundaries of the board
         value.between?(1, 9)
+    end
+
+    #Here you are initially setting pos to be nil
+    def get_player_input
+        pos = nil
+        val = nil
+
+        #Do not end the loop until a valid position comes through and that
+        #position is not simply nil
+        until pos && valid_pos?(pos) && val && valid_val?(val)
+            #Once you recive a valid position, you can set the position to that
+            #player's input and return it
+            input_array = get_input.to_a
+            pos = input_array[0]
+            val = input_array[1]
+        end
+
+        return input_array
+    end
+
+    def prompt
+        puts "please enter a pos and a val using an array [[row, col], val]"
+        print "> "
+    end
+
+    def get_input
+        #prompt is a custom function you defined to print to console a command
+        #to the user
+        prompt
+        #parse is a custom function you are defining below to handle user input
+        #STDIN will prioritize reading the user's input
+        gets.chomp
     end
 
 

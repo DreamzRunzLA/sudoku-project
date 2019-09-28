@@ -10,7 +10,7 @@ class Board
     end
 
     def self.from_file
-        arr = File.readlines('puzzles/sudoku1_solved.txt').map do |line|
+        arr = File.readlines('puzzles/sudoku1.txt').map do |line|
             line.split.map do |ele|
                 ele.to_s
                 ele.split('')
