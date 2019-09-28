@@ -10,7 +10,7 @@ class Board
     end
 
     def self.from_file
-        arr = File.readlines('puzzles/sudoku1.txt').map do |line|
+        arr = File.readlines('puzzles/sudoku1_solved.txt').map do |line|
             line.split.map do |ele|
                 ele.to_s
                 ele.split('')
@@ -88,7 +88,7 @@ class Board
     end
 
     def solved?
-
+        return self.row_solved? && self.col_solved? && self.grid_solved?
     end
 
     def row_solved?
@@ -148,8 +148,10 @@ class Board
             end
             myCheck <<  digits
         end
-        return myCheck
+        return myCheck.all? {|ele| ele.sort == [1,2,3,4,5,6,7,8,9]}
     end
+
+
 
 
 end
