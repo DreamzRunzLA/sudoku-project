@@ -21,7 +21,7 @@ class Game
             #Constantly obtain the position for the player
             pos = get_player_input[0]
             val = get_player_input[1]
-            #Constantly have the player make a guess
+
             @board.update_tile(pos, val)
         end
 
@@ -32,9 +32,9 @@ class Game
         #Check if input is array
         pos.is_a?(Array) &&
         #Check that only 2 values were given
-            pos.count == 2 &&
-            #Check that the numbers given fall within the boundaries of the board
-            pos.all? { |x| x.between?(0, 8) }
+        pos.count == 2 &&
+        #Check that the numbers given fall within the boundaries of the board
+        pos.all? { |x| x.between?(0, 8) }
     end
 
     def valid_val?(value)
@@ -51,19 +51,20 @@ class Game
 
         #Do not end the loop until a valid position comes through and that
         #position is not simply nil
-        until pos && valid_pos?(pos) && val && valid_val?(val)
+        until pos && self.valid_pos?(pos) && val && self.valid_val?(val)
+            the_array = self.get_input
             #Once you recive a valid position, you can set the position to that
             #player's input and return it
-            input_array = get_input.to_a
-            pos = input_array[0]
-            val = input_array[1]
+            pos = the_array[0]
+            val = the_array[1]
         end
-
-        return input_array
+        
+        puts "input succeeded"
+        return the_array
     end
 
     def prompt
-        puts "please enter a pos and a val using an array [[row, col], val]"
+        puts "please enter a row, col, and value separated by a comma"
         print "> "
     end
 
@@ -73,7 +74,17 @@ class Game
         prompt
         #parse is a custom function you are defining below to handle user input
         #STDIN will prioritize reading the user's input
-        gets.chomp
+        raw = gets.chomp
+        raw_array = raw.split(',')
+        print raw_array
+
+        outer_array = []
+        inner_array = []
+        inner_array << raw_array[0].to_i
+        inner_array << raw_array[1].to_i
+        outer_array << inner_array
+        outer_array << raw_array[2].to_i
+        return outer_array
     end
 
 
